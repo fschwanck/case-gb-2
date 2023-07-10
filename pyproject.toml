@@ -10,7 +10,14 @@ packages = [{include = "case_gb_2"}]
 python = "^3.10"
 pandas = "^2.0.3"
 google-cloud-storage = "^2.10.0"
+pandas-gbq = "^0.19.2"
+fsspec = "^2023.6.0"
+gcsfs = "^2023.6.0"
+openpyxl = "^3.1.2"
 
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.24.0"
 
 [build-system]
 requires = ["poetry-core"]

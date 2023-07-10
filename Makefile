@@ -1,24 +1,32 @@
-VERSION=latest
-SCRIPTS_DIR=./scripts
-DOCKER_DIR=./docker
-CODE_DIR=source
-CERTIFICATES_DIR=./.cache/certificates
-LOCAL_CONFIG_DIR=./config/local
-BUILD_DIR=./.cache/build
-SERVER_DIR=./server
-CLIENT_DIR=./client
-DOCKER_USER=fschwanck
-KUBERNETES_SERVER=blacksabbath.inf.ufrgs.br
-SSH_USER=fmschwanck
+PROJECT_ID=fschwanck-case-gb-2
+BUCKET_NAME=$(PROJECT_ID)-bucket
+BUCKET_LOCATION=us
 
 
-.PHONY: install-poetry
-install-poetry:
-	curl -sSL https://install.python-poetry.org | POETRY_HOME=/bin/poetry python3 -
-	echo 'export PATH="/bin/poetry/bin:$PATH"' >> ~/.bashrc
-	source ~/.bashrc
-	poetry config virtualenvs.in-project true
+.PHONY: gcp-set-project
+gcp-set-project:
+	gcloud config set project $(PROJECT_ID)
 
+.PHONY: gcp-create-bucket
+gcp-create-bucket:
+	gcloud storage buckets create gs://$(BUCKET_NAME) --project=$(PROJECT_ID) --location=$(BUCKET_LOCATION) --uniform-bucket-level-access
+
+
+.PHONY: gcp-upload-bucket
+gcp-upload-bucket: rebuild-base
+	gcloud storage cp ./data/base.csv gs://$(BUCKET_NAME)
+
+.PHONY: gcp-init-bucket
+gcp-init-bucket: gcp-create-bucket gcp-upload-bucket
+	echo "Creating bucket and uploading data to $(BUCKET_NAME}"
+
+.PHONY: gcp-create-datasets
+gcp-create-datasets:
+	poetry run python3 ./scripts/create_datasets.py
+
+.PHONY: rebuild-base
+rebuild-base: 
+	poetry run python3 ./scripts/rebuild_base.py
 
 docker-build-client: ${DOCKER_DIR}/client/Dockerfile certificates
 	poetry export -C $(CLIENT_DIR) --without-hashes --format=requirements.txt > ${DOCKER_DIR}/client/requirements.txt
