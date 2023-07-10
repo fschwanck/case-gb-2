@@ -1,4 +1,5 @@
-
+CREATE OR REPLACE PROCEDURE refined.tabela_3()
+BEGIN
 CREATE TABLE IF NOT EXISTS `fschwanck-case-gb-2`.`refined`.`tabela_3`(
     MARCA STRING,
     ANO STRING,
@@ -14,4 +15,6 @@ SELECT
   format_date('%m', DATA_VENDA) AS MES,
   SUM(QTD_VENDA) AS QTD_VENDA
 FROM `fschwanck-case-gb-2`.`raw`.`tabela_base`
-GROUP BY MARCA, ANO, MES
+GROUP BY MARCA, ANO, MES;
+END
+

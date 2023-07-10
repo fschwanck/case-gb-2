@@ -1,4 +1,5 @@
-
+CREATE OR REPLACE PROCEDURE refined.tabela_2()
+BEGIN
 CREATE TABLE IF NOT EXISTS `fschwanck-case-gb-2`.`refined`.`tabela_2`(
     MARCA STRING,
     LINHA STRING,
@@ -12,4 +13,5 @@ SELECT
   LINHA,
   SUM(QTD_VENDA) AS QTD_VENDA
 FROM `fschwanck-case-gb-2`.`raw`.`tabela_base`
-GROUP BY MARCA, LINHA
+GROUP BY MARCA, LINHA;
+END

@@ -1,3 +1,5 @@
+CREATE OR REPLACE PROCEDURE refined.tabela_1()
+BEGIN
 CREATE TABLE IF NOT EXISTS `fschwanck-case-gb-2`.`refined`.`tabela_1`(
     ANO STRING,
     MES STRING,
@@ -12,3 +14,4 @@ SELECT
   SUM(QTD_VENDA) AS QTD_VENDA
 FROM `fschwanck-case-gb-2`.`raw`.`tabela_base`
 GROUP BY ANO, MES
+END
