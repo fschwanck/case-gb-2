@@ -1,0 +1,11 @@
+{
+    "dag_spotify": {
+        "schedule_interval": null,
+        "retries": 1,
+        "retry_delay": 5,
+        "dag_timeout": 60,
+        "project_id": "fschwanck-case-gb-2",
+        "dataset_id": "refined",
+        "gcf_url": "https://us-central1-fschwanck-case-gb-2.cloudfunctions.net/function-spotify"
+    }
+}
