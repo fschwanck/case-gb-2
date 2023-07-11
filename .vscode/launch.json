@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Deploy Cloud Function",
+            "type": "cloudcode.cloudfunctions",
+            "request": "launch",
+            "functionName": "function-spotify",
+            "gen": "GEN_2",
+            "revision": "",
+            "entryPoint": "functions",
+            "testInput": "",
+            "region": "asia-east1",
+            "runtime": "python310"
+        }
+    ]
+}
