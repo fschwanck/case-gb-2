@@ -1,13 +1,6 @@
 CREATE OR REPLACE PROCEDURE refined.tabela_2()
 BEGIN
-CREATE TABLE IF NOT EXISTS `fschwanck-case-gb-2`.`refined`.`tabela_2`(
-    MARCA STRING,
-    LINHA STRING,
-    QTD_VENDA INTEGER
-
-);
-TRUNCATE TABLE `fschwanck-case-gb-2`.`refined`.`tabela_2`;
-INSERT `fschwanck-case-gb-2`.`refined`.`tabela_2` (MARCA, LINHA, QTD_VENDA)
+CREATE OR REPLACE TABLE `fschwanck-case-gb-2`.`refined`.`tabela_2` as
 SELECT 
   MARCA,
   LINHA,

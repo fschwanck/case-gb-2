@@ -1,14 +1,6 @@
 CREATE OR REPLACE PROCEDURE refined.tabela_4()
 BEGIN
-CREATE TABLE IF NOT EXISTS `fschwanck-case-gb-2`.`refined`.`tabela_4`(
-    LINHA STRING,
-    ANO STRING,
-    MES STRING,
-    QTD_VENDA INTEGER
-
-);
-TRUNCATE TABLE `fschwanck-case-gb-2`.`refined`.`tabela_4`;
-INSERT `fschwanck-case-gb-2`.`refined`.`tabela_4` (LINHA, ANO, MES, QTD_VENDA)
+CREATE OR REPLACE TABLE `fschwanck-case-gb-2`.`refined`.`tabela_4` as
 SELECT 
   LINHA,
   format_date('%Y', DATA_VENDA) AS ANO,
