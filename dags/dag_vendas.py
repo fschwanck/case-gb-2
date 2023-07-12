@@ -1,7 +1,4 @@
 
-# ===========================================================================================
-# BIBLIOTECAS
-# ===========================================================================================
 
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
@@ -12,9 +9,6 @@ from airflow import utils
 
 
 
-# ===========================================================================================
-# VARIÁVEIS
-# ===========================================================================================
 
 # Coleta variaveis do Airflow
 env_var = Variable.get("dag_vendas", deserialize_json=True)
